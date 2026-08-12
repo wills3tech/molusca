@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mollusca • Natural Food Scanner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quagga@0.12.1/dist/quagga.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+        :root { --forest: #0f3d1f; --leaf: #4ade80; }
+        body { font-family: 'Inter', system-ui, sans-serif; scroll-behavior: smooth; }
+        .hero-bg { background-image: linear-gradient(rgba(15, 61, 31, 0.9), rgba(10, 18, 15, 1)), url('https://picsum.photos/id/1015/2000/1200'); background-size: cover; background-position: center; }
+        .scan-frame { border: 2px solid rgba(74, 222, 128, 0.3); box-shadow: 0 0 30px rgba(74, 222, 128, 0.1); }
+        section { min-height: 100vh; padding-top: 80px; }
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body class="bg-[#0a120f] text-white">
+    <nav class="bg-[#0f3d1f]/95 backdrop-blur-md fixed top-0 w-full z-50 border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2 cursor-pointer" onclick="navigateTo('home')">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mollusca • Natural Food Scanner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quagga@0.12.1/dist/quagga.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+        :root { --forest: #0f3d1f; --leaf: #4ade80; }
+        body { font-family: 'Inter', system-ui, sans-serif; scroll-behavior: smooth; }
+        .hero-bg { background-image: linear-gradient(rgba(15, 61, 31, 0.9), rgba(10, 18, 15, 1)), url('https://picsum.photos/id/1015/2000/1200'); background-size: cover; background-position: center; }
+        .scan-frame { border: 2px solid rgba(74, 222, 128, 0.3); box-shadow: 0 0 30px rgba(74, 222, 128, 0.1); }
+        section { min-height: 100vh; padding-top: 80px; }
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body class="bg-[#0a120f] text-white">
+    <nav class="bg-[#0f3d1f]/95 backdrop-blur-md fixed top-0 w-full z-50 border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2 cursor-pointer" onclick="navigateTo('home')">
+                <div class="w-8 h-8 bg-[#4ade80] rounded-lg flex items-center justify-center text-xl shadow-lg">🌿</div>
+                <span class="font-bold text-xl tracking-tight">mollusca</span>
+            </div>
+            <div class="flex items-center gap-4 text-gray-300">
+                <button onclick="navigateTo('scanner')" class="hover:text-[#4ade80] p-2"><i class="fas fa-camera"></i></button>
+                <button onclick="navigateTo('history')" class="hover:text-[#4ade80] p-2"><i class="fas fa-history"></i></button>
+                <button onclick="showProfile()" class="bg-[#4ade80] text-black w-8 h-8 rounded-full flex items-center justify-center font-bold hover:bg-[#22c55e]"><i class="fas fa-user text-sm"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero-bg flex items-center justify-center px-6 text-center">
+        <div class="max-w-2xl">
+            <div class="inline-block bg-white/10 px-4 py-1 rounded-full text-xs uppercase tracking-widest mb-6 border border-white/10">Your Forest Guardian</div>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">Scan. Know.<br><span class="text-[#4ade80]">Thrive Naturally</span></h1>
+            <p class="text-gray-400 text-lg mb-10">Instant health insights and natural alternatives for ultra-processed foods.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="navigateTo('scanner')" class="bg-[#4ade80] text-black font-bold px-8 py-4 rounded-2xl hover:scale-105 transition-transform">START SCANNING</button>
+                <button onclick="navigateTo('tips')" class="border border-white/20 px-8 py-4 rounded-2xl hover:bg-white/5">Discover Tips</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="scanner" class="hidden px-6">
+        <div class="max-w-xl mx-auto py-8 text-center">
+            <h2 class="text-3xl font-bold mb-8">Food Scanner</h2>
+            <div class="bg-[#1a2f23] rounded-3xl p-6 scan-frame">
+                <div class="mb-6 flex gap-2">
+                    <input type="text" id="barcode-input" placeholder="Enter barcode..." class="flex-1 bg-black/40 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-[#4ade80]">
+                    <button onclick="lookupBarcode(document.getElementById('barcode-input').value)" class="bg-[#4ade80] text-black px-4 rounded-xl"><i class="fas fa-search"></i></button>
+                </div>
+                <div id="camera-view" class="aspect-square bg-black rounded-2xl flex items-center justify-center relative overflow-hidden mb-6 border border-white/5">
+                    <div class="text-center p-6" id="camera-placeholder"><i class="fas fa-camera text-4xl text-white/20 mb-4"></i><p class="text-sm text-white/40">Camera view will appear here</p></div>
+                    <video id="video" class="hidden w-full h-full object-cover"></video>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <button onclick="startBarcodeScanner()" class="bg-white text-black py-4 rounded-xl font-bold text-sm">ACTIVATE CAMERA</button>
+                    <button onclick="simulateScan()" class="border border-[#4ade80] text-[#4ade80] py-4 rounded-xl font-bold text-sm">DEMO SCAN</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="results" class="hidden px-6 pb-20">
+        <div class="max-w-2xl mx-auto">
+            <button onclick="navigateTo('scanner')" class="text-[#4ade80] mb-6"><i class="fas fa-arrow-left mr-2"></i>Back</button>
+            <div class="bg-[#1a2f23] rounded-3xl p-6 mb-6">
+                <div class="flex gap-6 items-start mb-8">
+                    <div class="w-24 h-24 bg-black/40 rounded-2xl flex-shrink-0 flex items-center justify-center overflow-hidden border border-white/5">
+                        <img id="real-product-img" src="" class="hidden w-full h-full object-contain"><span id="product-emoji" class="text-4xl">🍫</span>
+                    </div>
+                    <div class="text-left">
+                        <h3 id="product-name" class="text-2xl font-bold leading-tight">Product</h3>
+                        <p id="product-brand" class="text-[#4ade80] text-sm">Brand</p>
+                        <div class="mt-2 flex items-center gap-2"><span class="text-xs text-gray-400">Health Score:</span><span id="health-score" class="font-bold text-[#4ade80]">--/100</span></div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-3 gap-4 mb-8">
+                    <div class="bg-black/20 p-3 rounded-xl text-center"><div class="text-[10px] text-gray-500 uppercase">Calories</div><div id="calories" class="text-xl font-bold">--</div></div>
+                    <div class="bg-black/20 p-3 rounded-xl text-center"><div class="text-[10px] text-gray-500 uppercase">Sugar</div><div id="sugar" class="text-xl font-bold text-red-400">--</div></div>
+                    <div class="bg-black/20 p-3 rounded-xl text-center"><div class="text-[10px] text-gray-500 uppercase">Additives</div><div id="additives" class="text-xl font-bold">--</div></div>
+                </div>
+                <div class="border-t border-white/5 pt-6 text-left"><h4 class="text-xs font-bold text-[#4ade80] uppercase tracking-widest mb-3">AI Analysis</h4><p id="ai-insight" class="text-gray-300 leading-relaxed">Analyzing...</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="history" class="hidden px-6 pb-20"><div class="max-w-xl mx-auto"><h2 class="text-3xl font-bold text-center mb-8">History</h2><div id="history-list" class="space-y-4"></div></div></section>
+    <section id="tips" class="hidden px-6 pb-20"><div class="max-w-xl mx-auto"><h2 class="text-3xl font-bold text-center mb-8">Forest Wisdom</h2><div class="bg-[#1a2f23] p-6 rounded-2xl"><h4>Gut Health 101</h4><p class="text-sm text-gray-400 mt-2">Choose whole foods to protect your microbiome.</p></div></div></section>
+
+    <script>
+        let scanHistory = JSON.parse(localStorage.getItem('molluscaHistory')) || [];
+        function navigateTo(s) { document.querySelectorAll('section').forEach(sec => sec.classList.add('hidden')); document.getElementById(s).classList.remove('hidden'); window.scrollTo(0, 0); }
+        async function lookupBarcode(b) {
+            if (!b) return; navigateTo('results'); document.getElementById('ai-insight').textContent = "Connecting to forest database...";
+            try {
+                const res = await fetch(`https://world.openfoodfacts.org/api/v0/product/${b}.json`);
+                const data = await res.json();
+                if (data.status === 1) {
+                    const p = data.product; const grade = p.nutrition_grades || 'c';
+                    const scores = { 'a': 95, 'b': 85, 'c': 65, 'd': 45, 'e': 25 };
+                    const productData = { name: p.product_name || "Unknown", brand: p.brands || "Unknown", score: scores[grade.toLowerCase()] || 50, calories: Math.round(p.nutriments['energy-kcal_100g'] || 0), sugar: (p.nutriments.sugars_100g || 0).toFixed(1) + "g", additives: p.additives_n || 0, image: p.image_url, date: new Date().toLocaleDateString() };
+                    displayResults(productData); saveHistory(productData);
+                } else { alert("Not found!"); navigateTo('scanner'); }
+            } catch (e) { simulateScan(); }
+        }
+        function displayResults(d) {
+            document.getElementById('product-name').textContent = d.name; document.getElementById('product-brand').textContent = d.brand;
+            document.getElementById('health-score').textContent = d.score + "/100"; document.getElementById('calories').textContent = d.calories;
+            document.getElementById('sugar').textContent = d.sugar; document.getElementById('additives').textContent = d.additives;
+            const img = document.getElementById('real-product-img'); const emoji = document.getElementById('product-emoji');
+            if (d.image) { img.src = d.image; img.classList.remove('hidden'); emoji.classList.add('hidden'); } else { img.classList.add('hidden'); emoji.classList.remove('hidden'); }
+            document.getElementById('ai-insight').innerHTML = d.score > 70 ? "This is a <span class='text-[#4ade80] font-bold'>Whole Food</span>." : "Ultra-processed detected.";
+        }
+        function saveHistory(p) { scanHistory.unshift(p); if (scanHistory.length > 20) scanHistory.pop(); localStorage.setItem('molluscaHistory', JSON.stringify(scanHistory)); updateHistoryUI(); }
+        function startBarcodeScanner() {
+            const v = document.getElementById('video'); const p = document.getElementById('camera-placeholder');
+            v.classList.remove('hidden'); p.classList.add('hidden');
+            Quagga.init({ inputStream: { name: "Live", type: "LiveStream", target: document.getElementById('camera-view'), constraints: { facingMode: "environment" } }, decoder: { readers: ["ean_reader"] } }, function(err) {
+                if (err) { alert("Camera failed. Use Demo Scan."); return; }
+                Quagga.start();
+            });
+            Quagga.onDetected(r => { Quagga.stop(); v.classList.add('hidden'); p.classList.remove('hidden'); lookupBarcode(r.codeResult.code); });
+        }
+        function simulateScan() { const codes = ["3017620422003", "7622210449283"]; lookupBarcode(codes[Math.floor(Math.random() * codes.length)]); }
+        function updateHistoryUI() {
+            const list = document.getElementById('history-list'); if (!list) return;
+            list.innerHTML = scanHistory.map(s => `<div class="bg-[#1a2f23] p-4 rounded-2xl flex justify-between items-center mb-3"><div><div class="font-bold text-sm">${s.name}</div><div class="text-[10px] text-gray-500">${s.date}</div></div><div class="font-mono text-[#4ade80] font-bold">${s.score}</div></div>`).join('') || '<p class="text-center text-gray-500 py-10">No history yet.</p>';
+        }
+        function showProfile() {
+            const count = scanHistory.length; const avg = count > 0 ? Math.round(scanHistory.reduce((a, b) => a + b.score, 0) / count) : 0;
+            const level = count > 15 ? "Ancient Oak 🌳" : count > 5 ? "Forest Guardian 🌿" : "Seedling 🌱";
+            alert(`YOUR FOREST STATS\n\nScans: ${count}\nAvg Score: ${avg}/100\nLevel: ${level}`);
+        }
+        document.addEventListener('DOMContentLoaded', () => { navigateTo('home'); updateHistoryUI(); });
+    </script>
+</body>
+</html>
+Enter                <div class="w-8 h-8 bg-[#4ade80] rounded-lg flex items-center justify-center text-xl shadow-lg">🌿</div>
+                <span class="font-bold text-xl tracking-tight">mollusca</span>
+            </div>
+            <div class="flex items-center gap-4 text-gray-300">
+                <button onclick="navigateTo('scanner')" class="hover:text-[#4ade80] p-2"><i class="fas fa-camera"></i></button>
+                <button onclick="navigateTo('history')" class="hover:text-[#4ade80] p-2"><i class="fas fa-history"></i></button>
+                <button onclick="showProfile()" class="bg-[#4ade80] text-black w-8 h-8 rounded-full flex items-center justify-center font-bold hover:bg-[#22c55e]"><i class="fas fa-user text-sm"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero-bg flex items-center justify-center px-6 text-center">
+        <div class="max-w-2xl">
+            <div class="inline-block bg-white/10 px-4 py-1 rounded-full text-xs uppercase tracking-widest mb-6 border border-white/10">Your Forest Guardian</div>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">Scan. Know.<br><span class="text-[#4ade80]">Thrive Naturally</span></h1>
+            <p class="text-gray-400 text-lg mb-10">Instant health insights and natural alternatives for ultra-processed foods.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="navigateTo('scanner')" class="bg-[#4ade80] text-black font-bold px-8 py-4 rounded-2xl hover:scale-105 transition-transform">START SCANNING</button>
+                <button onclick="navigateTo('tips')" class="border border-white/20 px-8 py-4 rounded-2xl hover:bg-white/5">Discover Tips</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="scanner" class="hidden px-6">
+        <div class="max-w-xl mx-auto py-8 text-center">
+            <h2 class="text-3xl font-bold mb-8">Food Scanner</h2>
+            <div class="bg-[#1a2f23] rounded-3xl p-6 scan-frame">
+                <div class="mb-6 flex gap-2">
+                    <input type="text" id="barcode-input" placeholder="Enter barcode..." class="flex-1 bg-black/40 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-[#4ade80]">
+                    <button onclick="lookupBarcode(document.getElementById('barcode-input').value)" class="bg-[#4ade80] text-black px-4 rounded-xl"><i class="fas fa-search"></i></button>
+                </div>
+                <div id="camera-view" class="aspect-square bg-black rounded-2xl flex items-center justify-center relative overflow-hidden mb-6 border border-white/5">
+                    <div class="text-center p-6" id="camera-placeholder"><i class="fas fa-camera text-4xl text-white/20 mb-4"></i><p class="text-sm text-white/40">Camera view will appear here</p></div>
+                    <video id="video" class="hidden w-full h-full object-cover"></video>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <button onclick="startBarcodeScanner()" class="bg-white text-black py-4 rounded-xl font-bold text-sm">ACTIVATE CAMERA</button>
+                    <button onclick="simulateScan()" class="border border-[#4ade80] text-[#4ade80] py-4 rounded-xl font-bold text-sm">DEMO SCAN</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="results" class="hidden px-6 pb-20">
+        <div class="max-w-2xl mx-auto">
+            <button onclick="navigateTo('scanner')" class="text-[#4ade80] mb-6"><i class="fas fa-arrow-left mr-2"></i>Back</button>
+            <div class="bg-[#1a2f23] rounded-3xl p-6 mb-6">
+                <div class="flex gap-6 items-start mb-8">
+                    <div class="w-24 h-24 bg-black/40 rounded-2xl flex-shrink-0 flex items-center justify-center overflow-hidden border border-white/5">
+                        <img id="real-product-img" src="" class="hidden w-full h-full object-contain"><span id="product-emoji" class="text-4xl">🍫</span>
+                    </div>
+                    <div class="text-left">
+                        <h3 id="product-name" class="text-2xl font-bold leading-tight">Product</h3>
+                        <p id="product-brand" class="text-[#4ade80] text-sm">Brand</p>
+                        <div class="mt-2 flex items-center gap-2"><span class="text-xs text-gray-400">Health Score:</span><span id="health-score" class="font-bold text-[#4ade80]">--/100</span></div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-3 gap-4 mb-8">
+                    <div class="bg-black/20 p-3 rounded-xl text-center"><div class="text-[10px] text-gray-500 uppercase">Calories</div><div id="calories" class="text-xl font-bold">--</div></div>
+                    <div class="bg-black/20 p-3 rounded-xl text-center"><div class="text-[10px] text-gray-500 uppercase">Sugar</div><div id="sugar" class="text-xl font-bold text-red-400">--</div></div>
+                    <div class="bg-black/20 p-3 rounded-xl text-center"><div class="text-[10px] text-gray-500 uppercase">Additives</div><div id="additives" class="text-xl font-bold">--</div></div>
+                </div>
+                <div class="border-t border-white/5 pt-6 text-left"><h4 class="text-xs font-bold text-[#4ade80] uppercase tracking-widest mb-3">AI Analysis</h4><p id="ai-insight" class="text-gray-300 leading-relaxed">Analyzing...</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="history" class="hidden px-6 pb-20"><div class="max-w-xl mx-auto"><h2 class="text-3xl font-bold text-center mb-8">History</h2><div id="history-list" class="space-y-4"></div></div></section>
+    <section id="tips" class="hidden px-6 pb-20"><div class="max-w-xl mx-auto"><h2 class="text-3xl font-bold text-center mb-8">Forest Wisdom</h2><div class="bg-[#1a2f23] p-6 rounded-2xl"><h4>Gut Health 101</h4><p class="text-sm text-gray-400 mt-2">Choose whole foods to protect your microbiome.</p></div></div></section>
+
+    <script>
+        let scanHistory = JSON.parse(localStorage.getItem('molluscaHistory')) || [];
+        function navigateTo(s) { document.querySelectorAll('section').forEach(sec => sec.classList.add('hidden')); document.getElementById(s).classList.remove('hidden'); window.scrollTo(0, 0); }
+        async function lookupBarcode(b) {
+            if (!b) return; navigateTo('results'); document.getElementById('ai-insight').textContent = "Connecting to forest database...";
